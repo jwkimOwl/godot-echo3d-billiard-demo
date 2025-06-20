@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://brwb7cge3tayu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_asc5c"]
+rough = true
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_upbqk"]
+size = Vector3(20.7, 2.74, 42.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xi557"]
+size = Vector3(20.7, 2.73, 42.9)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ixij"]
+rough = true
+bounce = 0.95
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1jdbt"]
+radius = 0.8
+height = 20.5
+
+[node name="TableCollider" type="Node3D"]
+
+[node name="TableTop" type="StaticBody3D" parent="."]
+transform = Transform3D(0.999999, 0.000809583, -0.000902221, -0.000809181, 1, 0.000446074, 0.000902582, -0.000445343, 0.999999, 0, 14, 0)
+physics_material_override = SubResource("PhysicsMaterial_asc5c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TableTop"]
+visible = false
+mesh = SubResource("BoxMesh_upbqk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableTop"]
+shape = SubResource("BoxShape3D_xi557")
+
+[node name="TableSide" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1ixij")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableSide"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 11.9, 16.5, 11.1)
+shape = SubResource("CapsuleShape3D_1jdbt")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TableSide"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -11.9, 16.5, 11.1)
+shape = SubResource("CapsuleShape3D_1jdbt")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="TableSide"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -11.9, 16.5, -11.1)
+shape = SubResource("CapsuleShape3D_1jdbt")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="TableSide"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 11.9, 16.5, -11.1)
+shape = SubResource("CapsuleShape3D_1jdbt")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="TableSide"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 16.5, 23)
+shape = SubResource("CapsuleShape3D_1jdbt")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="TableSide"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 16.5, -23)
+shape = SubResource("CapsuleShape3D_1jdbt")

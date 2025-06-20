@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgug1lwpy7vsh"]
+
+[ext_resource type="Script" path="res://item_list.gd" id="1_sxdja"]
+[ext_resource type="Script" path="res://button.gd" id="1_wwacb"]
+[ext_resource type="PackedScene" uid="uid://brwb7cge3tayu" path="res://table_collider.tscn" id="2_7vpex"]
+[ext_resource type="Script" path="res://Node_3d.gd" id="2_xkndp"]
+[ext_resource type="PackedScene" uid="uid://dr31w03cq4x41" path="res://asset_loader.tscn" id="3_xgsvh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sd553"]
+size = Vector3(200, 2, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bd7l"]
+size = Vector3(200, 2, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1xr5"]
+size = Vector3(50, 2, 50)
+
+[node name="Simulator" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemList" type="ItemList" parent="Node2D/Control"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 136.0
+select_mode = 1
+allow_search = false
+max_text_lines = 16
+auto_height = true
+item_count = 15
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
+item_3/text = "4"
+item_4/text = "5"
+item_5/text = "6"
+item_6/text = "7"
+item_7/text = "8"
+item_8/text = "9"
+item_9/text = "10"
+item_10/text = "11"
+item_11/text = "12"
+item_12/text = "13"
+item_13/text = "14"
+item_14/text = "15"
+script = ExtResource("1_sxdja")
+
+[node name="Button" type="Button" parent="Node2D/Control"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 20.0
+offset_right = 261.0
+offset_bottom = 65.0
+action_mode = 0
+text = "Reset"
+script = ExtResource("1_wwacb")
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("2_xkndp")
+
+[node name="Ground" type="StaticBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Ground"]
+mesh = SubResource("BoxMesh_sd553")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Ground"]
+shape = SubResource("BoxShape3D_2bd7l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.420877, 0.907117, 0, -0.907117, 0.420877, 0, 70.4866, 0)
+light_energy = 2.0
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 35, 0)
+size = 30.523
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+light_energy = 10.858
+shadow_enabled = true
+omni_range = 24.675
+
+[node name="InDetector" type="Area3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/InDetector"]
+shape = SubResource("BoxShape3D_x1xr5")
+
+[node name="TableCollider" parent="Node3D" instance=ExtResource("2_7vpex")]
+
+[node name="AssetLoader" parent="." instance=ExtResource("3_xgsvh")]
