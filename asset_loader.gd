@@ -5,10 +5,6 @@ var downloaded_assets=0
 
 
 func _ready():
-	'''Test code'''
-	emit_signal("asset_downloaded")
-	return
-	'''Test code end'''
 	
 	#calling API for Billiard Ball Assets in glb format
 	for i in range(16): 
@@ -39,7 +35,6 @@ func _ready():
 	
 
 func _on_request_completed(result, response_code, headers, body,asset_number:int):
-	print("api call ",asset_number," completed")
 	if result!= OK:
 		_on_request_error()
 		return
