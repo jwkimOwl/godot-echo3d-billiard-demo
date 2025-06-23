@@ -15,7 +15,8 @@ Example Godot project with echo3D integration.
 * Copy and paste the uploaded asset's ids as values for the constants BALL_ENTRY and TABLE_ENTRY.
 
 ## Run
-Set "Simulator" as the main scene and in Godot, and run project. 
+Set "Simulator" as the main scene and in Godot, and run project. <br><br>
+![Simulation](screenshots/simulation_play.gif)
 
 ## Learn More
 Refer to our [documentation](https://docs.echo3d.com/)to learn more about how to use echo3D.
