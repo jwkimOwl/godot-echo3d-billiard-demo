@@ -12,7 +12,6 @@ var in_detector = get_node("/root/Simulator/Node3D/InDetector")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#await get_node("/root/Simulator/AssetLoader").asset_downloaded
 	await get_tree().create_timer(0.1).timeout
 	var gltf_document := GLTFDocument.new()
 	var gltf_state := GLTFState.new()
@@ -23,7 +22,6 @@ func _ready() -> void:
 		error = gltf_document.append_from_file("res://assets/Billiard Ball "+str(ball_number)+".glb", gltf_state)
 	
 	var glb_model = gltf_document.generate_scene(gltf_state)
-	print("ball ",ball_number," added")
 	visible=true
 	glb_model.scale=Vector3(0.04,0.04,0.04)
 	
@@ -33,11 +31,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if position.y>16.23:
-		position.y=16.23
 	if not held and force != null:
 		apply_impulse(force/30)
-		#print("----------------------\napplied force to Ball ",ball_number,"\n---------------------")
 		force=null
 		init_mouse_drag_position=null
 		remove_child(force_arrow)
@@ -46,7 +41,6 @@ func _process(delta: float) -> void:
 
 
 func _on_ball_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
-	#print(event)
 	if event is InputEventMouseMotion:
 		if event.button_mask==1:
 			if init_mouse_drag_position == null:

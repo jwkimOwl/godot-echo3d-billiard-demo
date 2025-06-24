@@ -5,10 +5,28 @@ var downloaded_assets=0
 
 
 func _ready():
-	'''Test code'''
-	emit_signal("asset_downloaded")
-	return
-	'''Test code end'''
+	#create assets folder if it doesn't exist
+	if not DirAccess.dir_exists_absolute("res://assets"):
+		var dir = DirAccess.make_dir_absolute("res://assets")
+		if dir!=OK:
+			print(dir)
+			return
+	
+	#return without calling API if the assets exist in assets folder
+	var asset_count=0
+	var asset = FileAccess.file_exists("./assets/Billiard Ball Clube.glb")
+	if asset:
+		asset_count+=1
+	for i in range(1,16):
+		asset = FileAccess.file_exists("./assets/Billiard Ball "+str(i)+".glb")
+		if asset:
+			asset_count+=1
+	asset = FileAccess.file_exists("./assets/Billiard Table.glb")
+	if asset:
+		asset_count+=1
+	if asset_count==17:
+		emit_signal("asset_downloaded")
+		return
 	
 	#calling API for Billiard Ball Assets in glb format
 	for i in range(16): 
@@ -19,7 +37,7 @@ func _ready():
 		var error = request_ball.request("https://api.echo3D.com/download-model?key="+Constants.API_KEY
 										+"&entry="+Constants.BALL_ENTRY[i]
 										+"&email="+Constants.EMAIL
-										#+"&secKey="+Constants.SEC_KEY
+										+"&secKey="+Constants.SEC_KEY
 										+"&userKey="+Constants.USER_KEY
 										+"&fileFormat="+Constants.FILE_FORMAT
 										+"&convertMissing=true", [], HTTPClient.METHOD_GET, body)
@@ -39,7 +57,6 @@ func _ready():
 	
 
 func _on_request_completed(result, response_code, headers, body,asset_number:int):
-	print("api call ",asset_number," completed")
 	if result!= OK:
 		_on_request_error()
 		return
