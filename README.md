@@ -1,5 +1,6 @@
 # godot-echo3d-billiard-demo
-Example Godot project with echo3D integration.
+Example Godot project with echo3D integration. <br><br>
+![Simulation](screenshots/simulation_play.gif)
 
 ## Setup
 * Built with Godot 4.4
@@ -16,10 +17,11 @@ Example Godot project with echo3D integration.
 
 ## Run
 Set "Simulator" as the main scene and in Godot, and run project. <br><br>
-![Simulation](screenshots/simulation_play.gif)
+
+https://github.com/user-attachments/assets/d3177ad5-baaf-40fc-a6e0-f73937532ff5
 
 ## Learn More
-Refer to our [documentation](https://docs.echo3d.com/)to learn more about how to use echo3D.
+Refer to our [documentation](https://docs.echo3d.com/) to learn more about how to use echo3D.
 
 ## Troubleshooting
 * Visit our troubleshooting guide [here](https://docs.echo3d.com/quickstart/troubleshooting).
