@@ -50,7 +50,7 @@ func _ready():
 	var error = request_table.request("https://api.echo3D.com/download-model?key="+Constants.API_KEY
 									+"&entry="+Constants.TABLE_ENTRY
 									+"&email="+Constants.EMAIL
-									#+"&secKey="+Constants.SEC_KEY
+									+"&secKey="+Constants.SEC_KEY
 									+"&userKey="+Constants.USER_KEY
 									+"&fileFormat="+Constants.FILE_FORMAT
 									+"&convertMissing=true", [], HTTPClient.METHOD_GET, body)
